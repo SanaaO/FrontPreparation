@@ -1,7 +1,7 @@
 <button type="button" class="btn btn-outline btn-sm" (click)="addnewProduct()"> Add Product
 </button>
 <!-- add or edit modal -->
-<app-addoredit *ngIf="productModalOpen"  (finish)="handleFinish($event)"> </app-addoredit>
+<app-addoredit *ngIf="productModalOpen" [product]="selectedProduct" (finish)="handleFinish($event)"> </app-addoredit>
 
 <!-- delete modal -->
 
@@ -20,7 +20,7 @@
     <clr-dg-row *clrDgItems="let product of products ">
         <!-- Action -->
         <clr-dg-action-overflow>
-   
+            <button class="action-item" (click)="onEdit(product)">Edit</button>
         </clr-dg-action-overflow>
         <!-- -->
         <clr-dg-cell>{{product.prodid}}</clr-dg-cell>

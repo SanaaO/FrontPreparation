@@ -18,7 +18,7 @@ export class ProductsmanagementComponent implements OnInit {
   Images!: File[];
   base64Data: any;
 
-  selectedProduct: Product | undefined;
+  selectedProduct : any;
 
   productModalOpen = false;
 
@@ -28,7 +28,7 @@ export class ProductsmanagementComponent implements OnInit {
   ngOnInit(): void {
     this.productservice.getAllProducts().subscribe((data) => {
 
-      console.log( "get : " +JSON.stringify(data[0][1]));
+      console.log("get : " + JSON.stringify(data[0][1]));
       this.products = data[0];
       this.Images = data[1];
 
@@ -40,31 +40,50 @@ export class ProductsmanagementComponent implements OnInit {
 
   }
 
- 
+
 
   handleFinish(product: Product) {
-    console.log ("avant modif : " +JSON.stringify(product))
-    
-   // const categ  = new Category( this.product.category);
-    //this.product.category = categ;
-   /* this.productservice.getCategory(product.category).subscribe((data) => {
-      //console.log(data);
-      product.category = data;
-    })*/
+    if (product) {
 
-    console.log("apres modif :" +JSON.stringify(product));
-    console.log(product);
-    
-    this.productservice.addProduct(product, product.image).subscribe(
-      (data) => {
-        //console.log("done");
-        this.products.push(data);
-      })
+      if (this.selectedProduct) {
+        //Edit product
+        this.productservice.updateProduct(this.selectedProduct.prodid, product, product.image).subscribe(
+          (response) => {
+            const index = this.products.findIndex(p => p.prodid == this.selectedProduct!.prodid);
+            //this.products[index] = response;
+
+          }
+        )
+
+      }
+      else {
+        console.log("avant modif : " + JSON.stringify(product))
+
+        // const categ  = new Category( this.product.category);
+        //this.product.category = categ;
+
+
+        console.log("apres modif :" + JSON.stringify(product));
+        console.log(product);
+
+        this.productservice.addProduct(product, product.image).subscribe(
+          (data) => {
+            //console.log("done");
+            this.products.push(data);
+          })
+      }
+    }
   }
 
   addnewProduct() {
-    //this.selectedProduct = undefined;
+    this.selectedProduct = undefined;
     this.productModalOpen = true;
+  }
+
+  onEdit(product: Product): void {
+    this.productModalOpen = true;
+    this.selectedProduct = product;
+    //console.log(this.selectedProduct)
   }
 
 }

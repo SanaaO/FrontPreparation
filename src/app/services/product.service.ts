@@ -45,7 +45,7 @@ export class ProductService {
     //console.log(id)
 
     let params = new FormData();
-    params.append('productF', product);
+    params.append('product', product);
     params.append('file', file);
 
     return this.http.put(this.url + '/api/products/update?id=' + id, params)

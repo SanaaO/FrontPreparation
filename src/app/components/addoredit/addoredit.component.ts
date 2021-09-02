@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/model/Category';
 import { Product } from 'src/app/model/Product';
@@ -15,9 +15,10 @@ export class AddoreditComponent implements OnInit, OnChanges {
   productForm!: FormGroup;
   category: Category[] = [];
 
-  product !: Product;
+  //product !: Product;
   file!: File;
   @Output() finish = new EventEmitter;
+  @Input() product!: Product;
 
   constructor(private productservice: ProductService, private formbuilder: FormBuilder) {
 
