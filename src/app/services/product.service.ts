@@ -27,7 +27,6 @@ export class ProductService {
       type: 'application/json',
     });
 
-
     let params = new FormData();
     params.append('productF', product);
     params.append('file', file);
@@ -35,6 +34,7 @@ export class ProductService {
 
   }
 
+  
   updateProduct(id : any, prod: any, file: any) {
 
     //console.log(file);
