@@ -1,0 +1,89 @@
+<clr-wizard #wizard [clrWizardOpen]="true" [clrWizardSize]="size" [clrWizardClosable]="true">
+    <clr-wizard-title>{{ product ? 'Edit Product' : 'Add Product'}}</clr-wizard-title>
+
+    <clr-wizard-button [type]="'cancel'" (click)="handleCancel()">Cancel</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'" (click)="handleFinish()">Done</clr-wizard-button>
+
+    <form [formGroup]="productForm">
+        <clr-wizard-page>
+            <ng-template clrPageTitle>Product Infos</ng-template>
+            <ng-template clrPageNavTitle>Step 1</ng-template>
+            <div formGroupName="productInfos">
+
+                <clr-select-container>
+                    <label>Category</label>
+                    <select clrSelect placeholder=" ..." id="category" name="Category" formControlName="category">
+                        <option *ngFor="let category of category" [value]="category.name">
+                            {{category.name}}
+                        </option>
+                    </select>
+                </clr-select-container>
+
+                <clr-input-container>
+                    <label>Product name</label>
+                    <input clrInput id="name" placeholder="product name ..." name="name" formControlName="name" />
+                </clr-input-container>
+
+                <clr-textarea-container>
+                    <label>Description</label>
+                    <textarea clrTextarea id="description" name="description" formControlName="description"></textarea>
+                </clr-textarea-container>
+
+                <clr-select-container>
+                    <label>size</label>
+                    <select clrSelect id="size" placeholder=" ..." name="size" formControlName="size">
+                        <option *ngFor="let measure of [ 'XS','S', 'M', 'L', 'XL', '_' ]" [value]="measure">
+                            {{measure}}
+                        </option>
+                    </select>
+                </clr-select-container>
+
+                <clr-input-container>
+                    <label>Price</label>
+                    <input clrInput id="price" placeholder="price ..." name="price" formControlName="price" />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>InStock</label>
+                    <input clrInput id="instock" placeholder=" ..." name="instock" formControlName="instock" />
+                </clr-input-container>
+
+            </div>
+
+            <ng-template clrPageButtons>
+                <clr-wizard-button [type]="'cancel'"  (click)="handleCancel()"> Cancel</clr-wizard-button>
+                <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+                <clr-wizard-button [type]="'next'" [clrWizardButtonDisabled]="isProductInfosInvalid">Next
+                </clr-wizard-button>
+            </ng-template>
+
+        </clr-wizard-page>
+
+        <clr-wizard-page>
+            <ng-template clrPageTitle>Illustration</ng-template>
+            <ng-template clrPageNavTitle>Step 2</ng-template>
+            <div formGroupName="illustration">
+
+                <clr-input-container>
+                    <label>Add Picture</label>
+                    <input clrInput id="image" (change)="detecteFiles($event)" accept="image/*" name="image" type="file"
+                        formControlName="image" />
+                </clr-input-container>
+
+            </div>
+            <ng-template clrPageButtons>
+                <clr-wizard-button [type]="'cancel'" (click)="handleCancel()">Cancel</clr-wizard-button>
+                <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+                <clr-wizard-button [type]="'finish'" (click)="handleFinish()"
+                    [clrWizardButtonDisabled]="isIllustration">Done
+                </clr-wizard-button>
+            </ng-template>
+
+
+        </clr-wizard-page>
+
+    </form>
+
+</clr-wizard>

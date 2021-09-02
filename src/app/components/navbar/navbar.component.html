@@ -1,0 +1,25 @@
+<header class="header-1">
+    <div class="branding">
+        <a href="javascript://" class="nav-link">
+            <span class="title">MyProject</span>
+        </a>
+    </div>
+    <div class="header-nav">
+
+        <a clrVerticalNavLink *ngFor="let menuItem of menuItems" routerLinkActive="active"
+            [routerLink]="[menuItem.path]"> {{menuItem.title}}
+        </a>
+    </div>
+
+    <div class="header-actions">
+        <a clrVerticalNavLink *ngFor="let item of cnxmenuItems" routerLinkActive="active" [routerLink]="[item.path]">
+            {{item.title}}
+        </a>
+    </div>
+
+
+</header>
+<!-- contenu --->
+<div class="content-area">
+    <router-outlet></router-outlet>
+</div>

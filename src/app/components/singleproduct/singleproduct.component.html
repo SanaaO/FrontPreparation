@@ -1,0 +1,26 @@
+<clr-modal [clrModalOpen]= "true" [clrModalSize]="size" >
+    <h3 class="modal-title">Product details</h3>
+    <div class="modal-body">
+        <div class="card-media-block">
+
+            <img width="283" [src]="product.image" [alt]="product.name" />
+            <div class="card-media-description">
+                <h3 class="card-media-title">
+                    {{product.name}}  {{product.price}} €
+                </h3>
+                <p class="card-media-text">
+                    {{product.description}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-icon" title="Add to basket" (click)="addToBasket()">
+            <cds-icon shape="shopping-bag" solid></cds-icon>
+        </button>
+        <button margin-right="100" type="button" class="btn btn-icon btn-danger-outline " title="Add to favotites">
+            <cds-icon shape="heart" solid></cds-icon>
+        </button>
+        <button type="button" class="btn btn-outline" (click)="handelCancel()">Cancel</button>
+    </div>
+</clr-modal>

@@ -1,0 +1,47 @@
+<clr-modal [clrModalOpen]="true" [clrModalSize]="size">
+    <div class="modal-body">
+        <div class="login-wrapper">
+            <form class="login">
+                <section class="title">
+                    <h3 class="welcome">Welcome to</h3>
+                    Company Product Name
+                    <h5 class="hint">Use your informations to create a new account</h5>
+                </section>
+                <div class="login-group">
+        
+                    <clr-input-container>
+                        <label>Username (email)</label>
+                        <label class="clr-sr-only">Username</label>
+                        <input type="text" name="username" clrInput placeholder="Username" />
+                    </clr-input-container>
+                    <clr-password-container>
+                        <label>Password</label>
+                        <label class="clr-sr-only">Password</label>
+                        <input type="password" name="password" clrPassword placeholder="Password" />
+                        <clr-control-helper>Must contain at least 8 characters </clr-control-helper>
+                    </clr-password-container>
+                    <clr-input-container>
+                        <label>Name & Family name</label>
+                        <label class="clr-sr-only">Name & Family name</label>
+                        <input type="text" name="username" clrInput placeholder="Name & Family name" />
+                    </clr-input-container>
+
+                    <clr-date-container>
+                        <label>Birthday</label>
+                        <input type="date" clrDate name="demo" />
+                    </clr-date-container>
+
+                    <clr-select-container>
+                        <label class="clr-sr-only">User Role</label>
+                        <select clrSelect name="type">
+                            <option value="local">Customer</option>
+                        </select>
+                    </clr-select-container>
+                    
+                    <button type="submit" class="btn btn-primary">Register</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</clr-modal>

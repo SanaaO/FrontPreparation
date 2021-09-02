@@ -1,0 +1,50 @@
+<button type="button" class="btn btn-outline btn-sm" (click)="addnewProduct()"> Add Product
+</button>
+<!-- add or edit modal -->
+<app-addoredit *ngIf="productModalOpen"  (finish)="handleFinish($event)"> </app-addoredit>
+
+<!-- delete modal -->
+
+<!---->
+<clr-datagrid>
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column>Name</clr-dg-column>
+    <clr-dg-column [style.width.px]="360">Description</clr-dg-column>
+    <clr-dg-column>Size</clr-dg-column>
+    <clr-dg-column>Price</clr-dg-column>
+    <clr-dg-column>InStock</clr-dg-column>
+    <clr-dg-column>Category</clr-dg-column>
+    <clr-dg-column>Picture</clr-dg-column>
+
+
+    <clr-dg-row *clrDgItems="let product of products ">
+        <!-- Action -->
+        <clr-dg-action-overflow>
+   
+        </clr-dg-action-overflow>
+        <!-- -->
+        <clr-dg-cell>{{product.prodid}}</clr-dg-cell>
+        <clr-dg-cell>{{product.name}}</clr-dg-cell>
+        <clr-dg-cell>{{product.description}}</clr-dg-cell>
+        <clr-dg-cell>{{product.size}}</clr-dg-cell>
+        <clr-dg-cell>{{product.price}} €</clr-dg-cell>
+        <clr-dg-cell>{{product.instock}}</clr-dg-cell>
+        <clr-dg-cell>{{product.category.name}}</clr-dg-cell>
+        <clr-dg-cell><img width="70" [src]="product.image" [alt]="product.name" /></clr-dg-cell>
+
+    </clr-dg-row>
+    <!-- Pagination -->
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">products per page</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} products
+        </clr-dg-pagination>
+
+        <div class="search">
+            <label for="search_input">
+                <input id="search_input" type="text" placeholder="Search for keywords..." />
+            </label>
+        </div>
+    </clr-dg-footer>
+
+</clr-datagrid>

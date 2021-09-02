@@ -1,0 +1,29 @@
+<!-- Show product's details -->
+<app-singleproduct *ngIf="productDetails" [product]="selectedProduct" (cancel)="handelCancel()" ></app-singleproduct>
+<!-- Shop -->
+<div class="card-columns">
+  <div *ngFor="let product of  products">
+    <a href="javascript:void(0)" class="card clickable" (click)="navigate(product)" >
+      <div class="card-img">
+        <img [src]="product.image" [alt]="product.name" />
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          {{product.price}} €
+        </div>
+        <p class="card-text">
+          {{product.description}}
+        </p>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-icon" title="Add to basket">
+          <cds-icon shape="shopping-bag" solid></cds-icon>
+        </button>
+        <button margin-right="100" type="button" class="btn btn-icon btn-danger-outline " title="Add to favotites">
+          <cds-icon shape="heart" solid></cds-icon>
+        </button>
+      </div>
+    </a>
+  </div>
+</div>
+
