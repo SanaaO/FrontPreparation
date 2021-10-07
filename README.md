@@ -1,27 +1,25 @@
-# FrontApp
+# Online Shopping Frontend App
+- Backend Application in PreparationBack repository
+- Import database form "exportedDatabase.sql" file in PreparationBack repository
+- You can find a demo video in PreparationFront repository (ShoppingApplicationDemo.mp4)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
+# Features Completed 
 
-## Development server
+- JWT Authentication based on this [Tutorial](https://blog.angular-university.io/angular-jwt-authentication/)
+- Register and login with personal informations.Use one of those existing credentials to try login or create new user with register. Credentials to use ==> Administrator {username : sana.oueslati@gmail.com password : 123456 } or Customer {username : oussama@gmail.com password : 123456 } 
+- Product management : Add new product , Edit or Delete selected product
+- Home page where we have access to available products
+- Selected product details
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Features to be done
+- angular guard
+- WishList
+- Cart management
+- Command management
+- Payment
+  
+ # PS: 
+ - This is a personal private project for self-training purposes only
+ - This project is not complete yet and I still have some issues to fix and features to add
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -1,25 +1,27 @@
-<header class="header-1">
-    <div class="branding">
-        <a href="javascript://" class="nav-link">
-            <span class="title">MyProject</span>
-        </a>
+<div class="main-container">
+     <!---headernav-->
+    <header class="header-1">
+        <div class="branding">
+            <a href="javascript://" class="nav-link" routerLink="./home">
+                <span class="title">ShoppingQueen</span>
+            </a>
+        </div>
+        <div class="header-actions">
+            <a *ngIf = "!isLoggedIn"clrVerticalNavLink routerLink="./login" routerLinkActive="active"> Login </a>
+            <a *ngIf = "isLoggedIn" clrVerticalNavLink  (click) = "logout()" routerLinkActive="active"> Logout </a>
+        </div>
+    </header>
+
+    <div class="content-container">
+         <!--Sidenav--->
+        <nav class="sidenav" *ngIf = "isLoggedIn">
+            <section class="sidenav-content">
+                <a clrVerticalNavLink routerLink="./home" routerLinkActive="active"> Home </a>
+                <a *ngIf ="isAdministrator" clrVerticalNavLink routerLink="./management" routerLinkActive="active"> Products Management </a>
+            </section>
+        </nav>
+        <!-- content--->
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <div class="header-nav">
-
-        <a clrVerticalNavLink *ngFor="let menuItem of menuItems" routerLinkActive="active"
-            [routerLink]="[menuItem.path]"> {{menuItem.title}}
-        </a>
-    </div>
-
-    <div class="header-actions">
-        <a clrVerticalNavLink *ngFor="let item of cnxmenuItems" routerLinkActive="active" [routerLink]="[item.path]">
-            {{item.title}}
-        </a>
-    </div>
-
-
-</header>
-<!-- contenu --->
-<div class="content-area">
-    <router-outlet></router-outlet>
-</div>

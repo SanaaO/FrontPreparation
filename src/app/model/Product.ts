@@ -1,3 +1,5 @@
+import { Category } from "./Category";
+
 export class Product {
 
     prodid: number;
@@ -6,11 +8,11 @@ export class Product {
     size: any;
     price: number;
     instock: number;
-    category: any;
+    category: Category;
     picture: any;
     image: any;
 
-    constructor(prodid: number, name: string, description: string, size: any, price: number, instock: number, category: any,
+    constructor(prodid: number, name: string, description: string, size: any, price: number, instock: number, category: Category,
         picture: any, image: any) {
 
         this.prodid = prodid;

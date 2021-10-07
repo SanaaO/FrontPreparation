@@ -1,1 +1,11 @@
-<p>deleteitem works!</p>
+<clr-modal [clrModalOpen]="true" [clrModalClosable]="false">
+    <h3 class="modal-title">Delete product</h3>
+    <div class="modal-body">
+      <p>Are you sure to delete this product ?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="CancelDelete()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="ConfirmDelete()">Confirm</button>
+    </div>
+  </clr-modal>
+

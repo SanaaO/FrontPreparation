@@ -8,7 +8,10 @@ import { Product } from 'src/app/model/Product';
 })
 export class SingleproductComponent implements OnInit {
   size = "lg";
+ 
+  //product from home component
   @Input() product!: Product;
+
   @Output() cancel = new EventEmitter();
 
   constructor() { }
@@ -20,7 +23,7 @@ export class SingleproductComponent implements OnInit {
 
   }
 
-  //on emet un event cancel vers show product
+  //emit cancel event to home component
   handelCancel() {
     this.cancel.emit();
   }

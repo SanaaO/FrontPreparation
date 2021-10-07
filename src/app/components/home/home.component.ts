@@ -12,10 +12,11 @@ ClarityIcons.addIcons(heartIcon, shoppingBagIcon);
 export class HomeComponent implements OnInit {
 
   products: Product[] = [];
+
   Images!: File[];
   base64Data: any;
 
-  productDetails = false;
+  singleProductModalOpen = false;
   selectedProduct !: Product;
 
   @Output() sendProduct = new EventEmitter;
@@ -25,31 +26,36 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productservice.getAllProducts().subscribe((data) => {
 
-      console.log("get : " + JSON.stringify(data[0][1]));
+      // Response contain List of products and List of files
+      //each file is relative to the product in the same index order
+
       this.products = data[0];
       this.Images = data[1];
 
       for (let i = 0; i < this.products.length; i++) {
+
+        //iterate through Products and files lists and assign each file to its correspondent product       
         this.base64Data = this.Images[i];
-        this.products[i].image = 'data:image/jpeg;base64,' + this.base64Data;
+        this.products[i].image = 'data:image/jpeg;base64,' + this.base64Data
       }
+
+    },
+    error => {
+      console.log("Error message : " + error.error);
     });
 
   }
 
-  navigate(product : Product) {
+  navigate(product: Product) {
 
-    console.log("ok")
-    //this.router.navigate(["/single-product"]);
-    this.productDetails = true;
+    this.singleProductModalOpen = true;
     this.selectedProduct = product;
-    //console.log(this.selectedProduct);
-    this.sendProduct.emit(this.selectedProduct);
 
+    this.sendProduct.emit(this.selectedProduct);
   }
 
-  handelCancel(){
-    this.productDetails = false ;
+  handelCancel() {
+    this.singleProductModalOpen = false;
   }
 
 }

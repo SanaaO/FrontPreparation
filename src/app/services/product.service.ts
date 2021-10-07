@@ -35,23 +35,23 @@ export class ProductService {
   }
 
   
-  updateProduct(id : any, prod: any, file: any) {
+  updateProduct(id : any, prod: Product, file: any) : Observable<any> {
 
-    //console.log(file);
     const product = new Blob([JSON.stringify(prod)], {
       type: 'application/json',
     });
 
-    //console.log(id)
-
     let params = new FormData();
-    params.append('product', product);
+    params.append('productF', product);
     params.append('file', file);
 
     return this.http.put(this.url + '/api/products/update?id=' + id, params)
 
   }
 
+  deleteProduct(idprod : number) {
+    return this.http.delete(this.url + '/api/products/delete?id=' + idprod, { responseType: 'text' })
+  }
 
   getCategories() : Observable<any>{
     return this.http.get(this.url + '/api/products/getCategories');

@@ -14,9 +14,8 @@ export class AddoreditComponent implements OnInit, OnChanges {
   size = "lg";
   productForm!: FormGroup;
   category: Category[] = [];
-
-  //product !: Product;
   file!: File;
+
   @Output() finish = new EventEmitter;
   @Input() product!: Product;
 
@@ -46,14 +45,14 @@ export class AddoreditComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    //si le produit est defini c'est qu'on veut modifier le produit
+    //if the product is definedit means that we want to update the product
     if (this.product) {
       this.updateForm(this.product);
     }
   }
 
   updateForm(product: Product) {
-    // recuperer les champs a travers patchvalue
+    //get the fields through patchvalue
     this.productForm.patchValue({
       productInfos: {
         category: this.product.category.name,
@@ -65,6 +64,7 @@ export class AddoreditComponent implements OnInit, OnChanges {
       }
     });
   }
+
   detecteFiles(event: any) {
     this.file = event.target.files[0];
   }
@@ -81,33 +81,28 @@ export class AddoreditComponent implements OnInit, OnChanges {
 
   }
 
-  close() {
-    this.productForm.reset();
-  }
-
-
-
-
 
   handleCancel() {
     this.finish.emit();
-    this.close;
   }
 
   handleFinish() {
-    const product = {
+    var product = {
       ...this.productForm.get('productInfos')!.value,
       ...this.productForm.get('illustration')!.value,
+
     }
+    
+    //hardcoded : (we want to send a product with category as un object value 
+    // not a string value with category name (backend))
+
+    product.category = JSON.parse(`{"name":"${product.category}"}`);
 
     if (this.file) {
       product.image = this.file;
     }
-    console.log("event : " +JSON.stringify(product));
-    this.finish.emit(product);
-   
-    this.close();
 
+    this.finish.emit(product);
   }
 
 

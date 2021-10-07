@@ -4,8 +4,8 @@
             <form class="login">
                 <section class="title">
                     <h3 class="welcome">Welcome to</h3>
-                    Company Product Name
-                    <h5 class="hint">Use your Company ID to sign in or create one now</h5>
+                   Shopping Queen Store
+                    <h5 class="hint">Use your credentials to Log in or create a new Customer account.</h5>
                 </section>
                 <div class="login-group">
                     <form [formGroup]="loginForm">
@@ -20,15 +20,10 @@
                                 formControlName="password" />
                             <clr-control-helper>Must contain at least 8 characters </clr-control-helper>
                         </clr-password-container>
-
-                        <clr-checkbox-wrapper>
-                            <label>Remember me</label>
-                            <input type="checkbox" name="rememberMe" clrCheckbox />
-                        </clr-checkbox-wrapper>
-                        <button type="submit" class="btn btn-primary" (click)="Connection(loginForm)">Log In</button>
-                        <a href="javascript://" class="signup">Forgot Password?</a>
-                        <a href="javascript://" class="signup" routerLink="/register">Create new account</a>
                     </form>
+                    <button type="submit" class="btn btn-primary" (click)="Connection(loginForm)">Login</button>
+                    <a href="javascript://" class="signup">Forgot Password?</a>
+                    <a href="javascript://" class="signup" routerLink="/register">Create new account</a>
                 </div>
             </form>
         </div>

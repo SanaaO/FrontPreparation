@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common'
 
 import { ClarityModule } from '@clr/angular';
 
@@ -23,15 +24,17 @@ import { SingleproductComponent } from './components/singleproduct/singleproduct
 
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  {
+    path: 'login', component: LoginComponent 
+  },
+  { path: 'register', component: RegisterComponent},
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
-  {path: 'notfound', component: NotfoundComponent},
-  {path: 'management', component: ProductsmanagementComponent},
-  {path: 'logout', component: LogoutComponent},
+  { path: 'notfound', component: NotfoundComponent },
+  { path: 'management', component: ProductsmanagementComponent },
+  { path: 'logout', component: LogoutComponent },
   //path unknown
-  { path: '**', redirectTo: 'notFound', pathMatch: 'full' },]
+  { path: '**', redirectTo: 'notFound'},]
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +59,7 @@ export const routes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DatePipe,Storage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

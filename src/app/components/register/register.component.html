@@ -1,45 +1,50 @@
-<clr-modal [clrModalOpen]="true" [clrModalSize]="size">
+<clr-modal [clrModalOpen]="resgiterModalOpen" [clrModalSize]="size">
     <div class="modal-body">
         <div class="login-wrapper">
             <form class="login">
                 <section class="title">
                     <h3 class="welcome">Welcome to</h3>
-                    Company Product Name
+                    Shopping Queen Store
                     <h5 class="hint">Use your informations to create a new account</h5>
                 </section>
                 <div class="login-group">
-        
-                    <clr-input-container>
-                        <label>Username (email)</label>
-                        <label class="clr-sr-only">Username</label>
-                        <input type="text" name="username" clrInput placeholder="Username" />
-                    </clr-input-container>
-                    <clr-password-container>
-                        <label>Password</label>
-                        <label class="clr-sr-only">Password</label>
-                        <input type="password" name="password" clrPassword placeholder="Password" />
-                        <clr-control-helper>Must contain at least 8 characters </clr-control-helper>
-                    </clr-password-container>
-                    <clr-input-container>
-                        <label>Name & Family name</label>
-                        <label class="clr-sr-only">Name & Family name</label>
-                        <input type="text" name="username" clrInput placeholder="Name & Family name" />
-                    </clr-input-container>
+                    <form [formGroup]="registerForm">
+                        <clr-input-container>
+                            <label>Username (Email)</label>
+                            <label class="clr-sr-only">Username</label>
+                            <input type="text" name="email" clrInput placeholder="Username" formControlName="email" />
+                        </clr-input-container>
+                        <clr-password-container>
+                            <label>Password</label>
+                            <label class="clr-sr-only">Password</label>
+                            <input type="password" name="password" clrPassword placeholder="Password"
+                                formControlName="password" />
+                            <clr-control-helper>Must contain at least 8 characters </clr-control-helper>
+                        </clr-password-container>
+                        <clr-input-container>
+                            <label>Name & Family name</label>
+                            <label class="clr-sr-only">Name & Family name</label>
+                            <input type="text" name="name" clrInput placeholder="Name & Family name"
+                                formControlName="name" />
+                        </clr-input-container>
 
-                    <clr-date-container>
-                        <label>Birthday</label>
-                        <input type="date" clrDate name="demo" />
-                    </clr-date-container>
+                        <clr-date-container>
+                            <label>Birthday</label>
+                            <input type="date" clrDate name="birthday" formControlName="birthday" />
+                        </clr-date-container>
 
-                    <clr-select-container>
-                        <label class="clr-sr-only">User Role</label>
-                        <select clrSelect name="type">
-                            <option value="local">Customer</option>
-                        </select>
-                    </clr-select-container>
-                    
-                    <button type="submit" class="btn btn-primary">Register</button>
+                        <clr-select-container>
+                            <label class="clr-sr-only">User Role</label>
+                            <select clrSelect placeholder="as Customer" name="role" formControlName="role">
+                                <option *ngFor="let role of [ 'Customer' ]" [value]="role">Customer</option>
+                            </select>
+                        </clr-select-container>
 
+                    </form>
+                    <button type="submit" class="btn btn-primary"
+                        (click)="createAccount(registerForm)">Register</button>
+
+                    <a href="javascript://" class="signup" routerLink="/login">Already have an account ? Go to Login page.</a>
                 </div>
             </form>
         </div>

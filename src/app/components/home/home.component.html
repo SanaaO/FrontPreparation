@@ -1,6 +1,6 @@
-<!-- Show product's details -->
-<app-singleproduct *ngIf="productDetails" [product]="selectedProduct" (cancel)="handelCancel()" ></app-singleproduct>
-<!-- Shop -->
+<!-- Show product's details (singleProduct component) -->
+<app-singleproduct *ngIf="singleProductModalOpen" [product]="selectedProduct" (cancel)="handelCancel()" ></app-singleproduct>
+<!-- Home component -->
 <div class="card-columns">
   <div *ngFor="let product of  products">
     <a href="javascript:void(0)" class="card clickable" (click)="navigate(product)" >
