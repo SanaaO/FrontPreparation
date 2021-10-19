@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
       this.tokenservice.saveAuthorities(response.authorities);
       this.tokenservice.saveUserid(response.userid);
       this.isLoggedIn = true;
+
+      console.log (response)
       this.router.navigate(['/home']);
     },
     error => {

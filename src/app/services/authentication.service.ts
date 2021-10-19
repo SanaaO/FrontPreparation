@@ -25,6 +25,10 @@ export class AuthenticationService {
     return this.http.post(this.url + '/api/user/register', user );
   }
 
+  isLoggedIn (){
+    return !!sessionStorage.getItem('AuthToken');
+  }
+
 
   
 }

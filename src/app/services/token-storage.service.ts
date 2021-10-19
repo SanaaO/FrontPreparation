@@ -48,6 +48,12 @@ export class TokenStorageService {
   public saveAuthorities(authorities: string[]) {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    
+    if (!this.subjects.has(AUTHORITIES_KEY)) {
+      this.subjects.set(AUTHORITIES_KEY, new BehaviorSubject<any>(AUTHORITIES_KEY));
+    } else {
+      this.subjects.get(AUTHORITIES_KEY)?.next(AUTHORITIES_KEY);
+    }
 
   }
   public getAuthorities(): string[] {
@@ -63,17 +69,17 @@ export class TokenStorageService {
 
 
   // trigger changes on session storage
-  watch(): Observable<any> {
-    if (!this.subjects.has(TOKEN_KEY)) {
-      this.subjects.set(TOKEN_KEY, new BehaviorSubject<any>(null));
+  watch( key : string ): Observable<any> {
+    if (!this.subjects.has(key)) {
+      this.subjects.set(key, new BehaviorSubject<any>(null));
     }
-    var item = sessionStorage.getItem(TOKEN_KEY);
+    var item = sessionStorage.getItem(key);
     if (typeof (item) === undefined || item === null) {
       item = null;
     }
 
-    this.subjects.get(TOKEN_KEY)?.next(item);
-    return this.subjects.get(TOKEN_KEY) as Observable<any>;
+    this.subjects.get(key)?.next(item);
+    return this.subjects.get(key) as Observable<any>;
 
   }
 }

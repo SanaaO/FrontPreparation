@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/model/Product';
 import { ProductService } from 'src/app/services/product.service';
 import { ClarityIcons, heartIcon, shoppingBagIcon } from '@cds/core/icon';
+import { Subscription } from 'rxjs';
 ClarityIcons.addIcons(heartIcon, shoppingBagIcon);
 
 @Component({
@@ -9,7 +10,7 @@ ClarityIcons.addIcons(heartIcon, shoppingBagIcon);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit , OnDestroy{
 
   products: Product[] = [];
 
@@ -19,12 +20,14 @@ export class HomeComponent implements OnInit {
   singleProductModalOpen = false;
   selectedProduct !: Product;
 
+  subscription!: Subscription;
+
   @Output() sendProduct = new EventEmitter;
 
   constructor(private productservice: ProductService) { }
 
   ngOnInit(): void {
-    this.productservice.getAllProducts().subscribe((data) => {
+    this.subscription = this.productservice.getAllProducts().subscribe((data) => {
 
       // Response contain List of products and List of files
       //each file is relative to the product in the same index order
@@ -56,6 +59,11 @@ export class HomeComponent implements OnInit {
 
   handelCancel() {
     this.singleProductModalOpen = false;
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+    console.log("test")
   }
 
 }
