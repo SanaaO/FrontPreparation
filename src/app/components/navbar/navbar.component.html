@@ -1,5 +1,5 @@
 <div class="main-container">
-     <!---headernav-->
+    <!---headernav-->
     <header class="header-1">
         <div class="branding">
             <a href="javascript://" class="nav-link" routerLink="./home">
@@ -7,17 +7,26 @@
             </a>
         </div>
         <div class="header-actions">
-            <a *ngIf = "!isLoggedIn"clrVerticalNavLink routerLink="./login" routerLinkActive="active"> Login </a>
-            <a *ngIf = "isLoggedIn" clrVerticalNavLink  (click) = "logout()" routerLinkActive="active"> Logout </a>
+            <a *ngIf="!isLoggedIn" clrVerticalNavLink routerLink="./login" routerLinkActive="active">
+                <cds-icon shape="login" title="login"></cds-icon>
+            </a>
+            <a *ngIf="isLoggedIn" clrVerticalNavLink routerLink="./wishList" routerLinkActive="active">
+                <cds-icon shape="heart" title="Go to WishList"></cds-icon>
+            </a>
+            <a *ngIf="isLoggedIn" clrVerticalNavLink (click)="logout()" routerLinkActive="active">
+                <cds-icon shape="logout" title="logout"></cds-icon>
+            </a>
+           
         </div>
     </header>
 
     <div class="content-container">
-         <!--Sidenav--->
-        <nav class="sidenav" *ngIf = "isLoggedIn">
+        <!--Sidenav--->
+        <nav class="sidenav" *ngIf="isLoggedIn">
             <section class="sidenav-content">
                 <a clrVerticalNavLink routerLink="./home" routerLinkActive="active"> Home </a>
-                <a *ngIf ="isAdministrator" clrVerticalNavLink routerLink="./management" routerLinkActive="active"> Products Management </a>
+                <a *ngIf="isAdministrator" clrVerticalNavLink routerLink="./management" routerLinkActive="active">
+                    Products Management </a>
             </section>
         </nav>
         <!-- content--->

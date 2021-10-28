@@ -10,9 +10,10 @@ ClarityIcons.addIcons(heartIcon, shoppingBagIcon);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit , OnDestroy{
+export class HomeComponent implements OnInit, OnDestroy {
 
   products: Product[] = [];
+  userID  !: any;
 
   Images!: File[];
   base64Data: any;
@@ -27,6 +28,8 @@ export class HomeComponent implements OnInit , OnDestroy{
   constructor(private productservice: ProductService) { }
 
   ngOnInit(): void {
+    this.userID = sessionStorage.getItem('userID');
+
     this.subscription = this.productservice.getAllProducts().subscribe((data) => {
 
       // Response contain List of products and List of files
@@ -43,9 +46,9 @@ export class HomeComponent implements OnInit , OnDestroy{
       }
 
     },
-    error => {
-      console.log("Error message : " + error.error);
-    });
+      error => {
+        console.log("Error message : " + error);
+      });
 
   }
 
@@ -53,6 +56,7 @@ export class HomeComponent implements OnInit , OnDestroy{
 
     this.singleProductModalOpen = true;
     this.selectedProduct = product;
+    console.log(this.selectedProduct)
 
     this.sendProduct.emit(this.selectedProduct);
   }
@@ -61,7 +65,13 @@ export class HomeComponent implements OnInit , OnDestroy{
     this.singleProductModalOpen = false;
   }
 
-  ngOnDestroy(){
+  addToFavorites(product: Product) {
+    this.productservice.addToWishList(product, this.userID).subscribe(
+      (data) => { console.log(data) }
+    )
+  }
+
+  ngOnDestroy() {
     this.subscription.unsubscribe();
     console.log("test")
   }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClarityIcons, userIcon, homeIcon, crownIcon, cogIcon, storeIcon, loginIcon } from '@cds/core/icon';
+import { ClarityIcons, userIcon, homeIcon, crownIcon, cogIcon, storeIcon, loginIcon, logoutIcon} from '@cds/core/icon';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 
 
-ClarityIcons.addIcons(userIcon, homeIcon, crownIcon, cogIcon, loginIcon);
+ClarityIcons.addIcons(userIcon, homeIcon, crownIcon, cogIcon, loginIcon,logoutIcon);
 
 @Component({
   selector: 'app-navbar',

@@ -16,13 +16,13 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
 
-  getAllProducts() : Observable<any>{
+  getAllProducts(): Observable<any> {
     return this.http.get(this.url + '/api/products/getProducts');
   }
 
-  addProduct(prod : Product, file: any) : Observable<any>{
+  addProduct(prod: Product, file: any): Observable<any> {
 
-    console.log("service : " +JSON.stringify(prod));
+    console.log("service : " + JSON.stringify(prod));
     const product = new Blob([JSON.stringify(prod)], {
       type: 'application/json',
     });
@@ -34,8 +34,8 @@ export class ProductService {
 
   }
 
-  
-  updateProduct(id : any, prod: Product, file: any) : Observable<any> {
+
+  updateProduct(id: any, prod: Product, file: any): Observable<any> {
 
     const product = new Blob([JSON.stringify(prod)], {
       type: 'application/json',
@@ -49,16 +49,32 @@ export class ProductService {
 
   }
 
-  deleteProduct(idprod : number) {
+  deleteProduct(idprod: number) {
     return this.http.delete(this.url + '/api/products/delete?id=' + idprod, { responseType: 'text' })
   }
 
-  getCategories() : Observable<any>{
+
+
+  /* wishlist */
+
+  addToWishList(prroduct: Product, userID: number) {
+    return this.http.post(this.url + '/api/wishList/addWishList?userID=' + userID, prroduct, { responseType: 'text' })
+  }
+  updateWishList(productID: number, userID: number) {
+    return this.http.delete(this.url + '/api/wishList/remove?productID=' + productID + '&userID=' + userID, { responseType: 'text' })
+
+  }
+
+  getWishList(userID: number): Observable<any> {
+    return this.http.get(this.url + '/api/wishList/getWishList?userID=' + userID)
+  }
+
+
+  /* Category */
+  getCategory(name: String): Observable<any> {
+    return this.http.get(this.url + '/api/products/getCategory?name=' + name);
+  }
+  getCategories(): Observable<any> {
     return this.http.get(this.url + '/api/products/getCategories');
   }
-
-  getCategory(name : String) : Observable<any>{
-    return this.http.get(this.url + '/api/products/getCategory?name='+name);
-  }
-
 }

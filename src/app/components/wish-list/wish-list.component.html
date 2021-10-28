@@ -1,0 +1,26 @@
+<table class="table">
+    <caption>
+        <h1>My WishList</h1>
+    </caption>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Price  </th>
+            <th>Availability</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let product of wishList ">
+        <tr>
+            <td> <button type="button" class="btn btn-icon" (click) = "removeItem(product)">
+                <cds-icon shape="trash"></cds-icon>
+            </button></td>
+            <td><img width="70" [src]="product.image" [alt]="product.name" /></td>
+            <td>{{product.price}} €</td>
+            <td>{{productAvailibility}}</td>
+            <td><button type="button" class="btn btn-outline btn-sm"> Add to Basket
+            </button></td>
+        </tr>
+    </tbody>
+</table>

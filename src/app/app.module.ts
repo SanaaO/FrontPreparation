@@ -25,17 +25,18 @@ import { DeleteitemComponent } from './components/deleteitem/deleteitem.componen
 import { LogoutComponent } from './components/logout/logout.component';
 import { SingleproductComponent } from './components/singleproduct/singleproduct.component';
 import { AuthGuard } from './guards/auth.guard';
+import { WishListComponent } from './components/wish-list/wish-list.component';
+import { BasketComponent } from './components/basket/basket.component';
 
 
 export const routes: Routes = [
-  {
-    path: 'login', component: LoginComponent
-  },
+  {path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent  },
   { path: '', component: HomeComponent },
   { path: 'notfound', component: NotfoundComponent },
   { path: 'management', component: ProductsmanagementComponent, canActivate : [AuthGuard] },
+  { path: 'wishList' , component : WishListComponent},
   { path: 'logout', component: LogoutComponent },
   //path unknown
   { path: '**', redirectTo: 'notFound' },]
@@ -51,7 +52,9 @@ export const routes: Routes = [
     AddoreditComponent,
     DeleteitemComponent,
     LogoutComponent,
-    SingleproductComponent
+    SingleproductComponent,
+    WishListComponent,
+    BasketComponent
 
   ],
   imports: [
